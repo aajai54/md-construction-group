@@ -19,7 +19,7 @@ export default function Home() {
                 href="/docs"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               >
-                Get Started
+                Get Free Consultation
               </Link>
               <Link
                 href="/about"
@@ -56,11 +56,11 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                Lightning Fast Performance
+                Transparent Project Planning
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Optimized for speed with static site generation and server-side
-                rendering.
+                Clear scope discussions, practical timelines, and stage-wise
+                visibility from foundation to handover.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -80,10 +80,11 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                SEO Optimized
+                Quality Checks At Every Stage
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Built with SEO best practices and meta tags optimization.
+                Structured inspections and progress updates help maintain build
+                quality and reduce rework.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -103,10 +104,11 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                Modern UI Components
+                On-Time Handover Focus
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Pre-built components with Tailwind CSS for rapid development.
+                Milestone-based execution and close coordination keep projects
+                moving toward timely delivery.
               </p>
             </div>
           </div>
@@ -120,8 +122,8 @@ export default function Home() {
             Ready to Build Your Home?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get started with MD Construction Group today
-            and build your dream home.
+            Start your construction journey with MD Construction Group and get
+            a clear plan for budget, timeline, and execution.
           </p>
           <Link
             href="/docs"

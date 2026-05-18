@@ -3,11 +3,20 @@ export const siteName =
 
 export const title =
   process.env.NEXT_PUBLIC_TITLE ||
-  "MD Construction Group - We Build your Dreams";
+  "MD Construction Group | Trusted Home And Commercial Builders";
 
 export const description =
   process.env.NEXT_PUBLIC_DESCRIPTION ||
-  "A simple and easy-to-use starter template for building SEO optimized Next.js applications with best practices and performance in mind.";
+  "End-to-end construction services by MD Construction Group with transparent planning, quality-first execution, and on-time delivery.";
+
+export const companyHighlights = [
+  { value: "250+", label: "Projects Delivered" },
+  { value: "12+", label: "Years Of Experience" },
+  { value: "98%", label: "On-Time Handover" },
+  { value: "24x7", label: "Progress Visibility" },
+];
+
+export const consultationPhone = "+91 90000 12345";
 
 // Last baseURL
 const defaultBaseURL = "https://md-construction-group.vercel.app";

@@ -8,11 +8,11 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              About SEO Next.js Starter
+              About MD Construction Group
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Empowering developers to build SEO-optimized web applications with
-              Next.js
+              Building dependable residential and commercial spaces with
+              transparent planning, quality execution, and responsible delivery.
             </p>
           </div>
         </div>
@@ -27,15 +27,14 @@ export default function About() {
                 Our Mission
               </h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                We&apos;re on a mission to simplify the process of building
-                SEO-friendly web applications. Our starter template combines the
-                power of Next.js with best practices in SEO, performance, and
-                user experience.
+                We are committed to making construction clear and manageable
+                for every client. Our process aligns design intent, project
+                planning, and on-site execution from day one.
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                By providing a solid foundation with pre-configured SEO
-                optimizations, we help developers focus on what matters most -
-                creating amazing content and features for their users.
+                With experienced supervision and milestone-based communication,
+                we help you make confident decisions at every stage of your
+                build.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
@@ -58,7 +57,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Pre-configured SEO optimizations
+                    End-to-end support from consultation to handover
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -76,7 +75,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Performance-first architecture
+                    Stage-wise quality checks and regular project updates
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -94,7 +93,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Modern development experience
+                    Practical budgeting and timeline-focused execution
                   </span>
                 </li>
               </ul>
@@ -107,25 +106,25 @@ export default function About() {
       <section className="bg-gray-50 dark:bg-gray-900 py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Join Our Community
+            Start Your Construction Journey
           </h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            We&apos;re building a community of developers who share our vision
-            for better web development. Join us in making the web faster, more
-            accessible, and more SEO-friendly.
+            Talk to our team about your project scope, expected budget,
+            location constraints, and execution timeline. We will help you plan
+            the right next steps with clarity.
           </p>
           <div className="flex justify-center gap-4">
             <Link
               href="/docs"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              Get Started
+              View Services
             </Link>
             <Link
-              href="https://github.com/yourusername/seo-nextjs-starter"
+              href="/"
               className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              GitHub
+              Talk to Advisor
             </Link>
           </div>
         </div>
