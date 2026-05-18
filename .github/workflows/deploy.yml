@@ -1,0 +1,63 @@
+name: Deploy Next.js Static Site to Pages
+
+on:
+  push:
+    branches: ["main"] # Change to "master" if your default branch is master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ hashFiles('package-lock.json') && 'npm' || hashFiles('yarn.lock') && 'yarn' || 'pnpm' }}
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci;
+          elif [ -f yarn.lock ]; then yarn install --frozen-lockfile;
+          elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm install --frozen-lockfile;
+          else npm install;
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build Next.js Application
+        run: |
+          if [ -f package-lock.json ]; then npm run build;
+          elif [ -f yarn.lock ]; then yarn build;
+          elif [ -f pnpm-lock.yaml ]; then pnpm build;
+          else npm run build;
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -8,6 +8,7 @@ export const size = {
 };
 
 export const contentType = "image/png";
+export const dynamic = "force-static";
 
 // Image generation
 export default function Icon() {

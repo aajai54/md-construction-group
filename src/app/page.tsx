@@ -36,7 +36,7 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            Why Choose Our SEO Next.js Starter?
+            Why Choose MD Construction Group?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -117,11 +117,11 @@ export default function Home() {
       <section className="bg-blue-600 dark:bg-blue-800 py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Build Your Next Project?
+            Ready to Build Your Home?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get started with our SEO-optimized Next.js starter template today
-            and build faster, better websites.
+            Get started with MD Construction Group today
+            and build your dream home.
           </p>
           <Link
             href="/docs"
