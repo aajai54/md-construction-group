@@ -17,40 +17,32 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup pnpm
-        if: hashFiles('pnpm-lock.yaml') != ''
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: "22.5.1"
-          cache: ${{ hashFiles('package-lock.json') && 'npm' || hashFiles('yarn.lock') && 'yarn' || 'pnpm' }}
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then npm ci;
-          elif [ -f yarn.lock ]; then yarn install --frozen-lockfile;
-          elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm install --frozen-lockfile;
-          else npm install;
-          fi
+        run: pnpm install --frozen-lockfile
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Build Next.js Application
-        run: |
-          if [ -f package-lock.json ]; then npm run build;
-          elif [ -f yarn.lock ]; then yarn build;
-          elif [ -f pnpm-lock.yaml ]; then pnpm build;
-          else npm run build;
-          fi
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
