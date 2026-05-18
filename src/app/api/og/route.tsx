@@ -1,6 +1,8 @@
 import { siteName } from "@/config";
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   return new ImageResponse(
     (
