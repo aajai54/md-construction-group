@@ -3,6 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
+  const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
+  const bannerImageSrc = `${staticBasePath}/images/construction/banner1.png`;
+
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
@@ -54,7 +57,7 @@ export default function Home() {
           <div className="relative flex justify-center lg:justify-end">
             <div className="w-full max-w-md aspect-[4/4.5] bg-amber-50/40 dark:bg-gray-800/40 rounded-2xl border border-dashed border-amber-200 dark:border-gray-700 p-4 flex flex-col justify-between items-center relative overflow-hidden shadow-sm">
               <Image
-                src="/images/construction/banner1.png"
+                src={bannerImageSrc}
                 alt="Construction project banner"
                 fill
                 priority
@@ -80,7 +83,7 @@ export default function Home() {
           {/* Left Column - Structural Placeholder */}
           <div className="order-2 md:order-1 bg-amber-50/40 dark:bg-gray-800/40 aspect-square rounded-2xl border border-dashed border-amber-200 dark:border-gray-700 p-4 relative overflow-hidden shadow-sm">
             <Image
-              src="/images/construction/banner1.png"
+              src={bannerImageSrc}
               alt="Construction process"
               fill
               className="object-cover"
