@@ -1,4 +1,4 @@
-import { title, description, companyHighlights } from "@/config";
+import { description, companyHighlights } from "@/config";
 import Link from "next/link";
 import Image from "next/image";
 
