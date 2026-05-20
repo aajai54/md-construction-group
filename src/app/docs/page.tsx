@@ -4,7 +4,7 @@ import MarkdownContent from "@/components/MarkdownContent";
 const content = `
 # Services And Packages
 
-MD Construction Group offers practical construction solutions for residential and commercial requirements.
+MD Construction offers practical construction solutions for residential and commercial requirements.
 
 ## Package Options
 
@@ -41,7 +41,7 @@ export default function Docs() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Services And Packages
@@ -56,7 +56,7 @@ export default function Docs() {
 
       {/* Main Content */}
       <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-5 lg:px-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
             <MarkdownContent content={content} />
             <div className="mt-8">

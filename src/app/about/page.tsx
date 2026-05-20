@@ -1,14 +1,18 @@
 import Link from "next/link";
+import ContactCTA from "@/components/ContactCTA";
+import ScrollTagger from "@/components/ScrollTagger";
 
 export default function About() {
   return (
     <main className="min-h-screen">
+      <ScrollTagger />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              About MD Construction Group
+              About MD Construction
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
               Building dependable residential and commercial spaces with
@@ -20,7 +24,7 @@ export default function About() {
 
       {/* Mission Section */}
       <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
@@ -103,8 +107,8 @@ export default function About() {
       </section>
 
       {/* Community Section */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* <section className="bg-gray-50 dark:bg-gray-900 py-20">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
             Start Your Construction Journey
           </h2>
@@ -128,7 +132,8 @@ export default function About() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
+      <ContactCTA />
     </main>
   );
 }

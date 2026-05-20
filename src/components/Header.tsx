@@ -11,13 +11,14 @@ const Header = () => {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "/docs" },
+    { name: "Services", href: "/#services" },
+    { name: "Testimonial", href: "/testimonial" },
     { name: "About", href: "/about" },
   ];
 
   return (
     <header className="bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-800 sticky top-0 z-50">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
+      <nav className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-6" aria-label="Top">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
@@ -45,12 +46,12 @@ const Header = () => {
                 </Link>
               ))}
             </div>
-            <Link
-              href="/docs"
+            <a
+              href="#contact"
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
-              Get Consultation
-            </Link>
+              Get Free Consultation
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -104,13 +105,13 @@ const Header = () => {
               </Link>
             ))}
             <div className="px-3 pt-2">
-              <Link
-                href="/docs"
+              <a
+                href="#contact"
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Get Consultation
-              </Link>
+                Get Free Consultation
+              </a>
             </div>
           </div>
         )}

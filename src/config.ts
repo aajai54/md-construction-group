@@ -1,13 +1,13 @@
 export const siteName =
-  process.env.NEXT_PUBLIC_SITE_NAME || "MD Construction Group";
+  process.env.NEXT_PUBLIC_SITE_NAME || "MD Construction";
 
 export const title =
   process.env.NEXT_PUBLIC_TITLE ||
-  "MD Construction Group | Trusted Home And Commercial Builders";
+  "MD Construction | Trusted Home And Commercial Builders";
 
 export const description =
   process.env.NEXT_PUBLIC_DESCRIPTION ||
-  "End-to-end construction services by MD Construction Group with transparent planning, quality-first execution, and on-time delivery.";
+  "End-to-end construction services by MD Construction with transparent planning, quality-first execution, and on-time delivery.";
 
 export const companyHighlights = [
   { value: "250+", label: "Projects Delivered" },

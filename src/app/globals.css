@@ -40,3 +40,37 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+[data-tagger] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-tagger].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-tagger] [data-tagger-item] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--tagger-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-tagger].is-visible [data-tagger-item] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-tagger],
+  [data-tagger] [data-tagger-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
