@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import Link from "next/link";
 import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
 
@@ -49,7 +49,7 @@ export default function TestimonialPage() {
               key={item.name}
               className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm"
             >
-              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">"{item.quote}"</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
               <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
                 <h2 className="text-base font-semibold text-gray-900 dark:text-white">{item.name}</h2>
                 <p className="text-xs text-gray-500 dark:text-gray-400">{item.location}</p>
