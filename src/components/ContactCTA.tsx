@@ -53,7 +53,7 @@ export default function ContactCTA() {
             </a>
 
             <a
-              href="mailto:hello@mdconstructiongroup.in"
+              href={`mailto:${consultationEmail}`}
               className="flex items-center gap-4 rounded-xl border border-amber-200/10 bg-black/20 p-4 text-amber-50 hover:bg-black/40 hover:border-amber-200/30 transition-all duration-300 group"
             >
               <span className="w-10 h-10 rounded-full bg-amber-100/5 border border-amber-100/15 flex items-center justify-center text-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-300 transition-colors">
