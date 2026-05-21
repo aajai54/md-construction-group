@@ -9,6 +9,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
+  const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
+
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/#services" },
@@ -21,9 +24,14 @@ const Header = () => {
       <nav className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-6" aria-label="Top">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
+            {/* <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
               M
-            </div>
+            </div> */}
+            <img
+              src={bannerImageSrc}
+              alt="Logo"
+              className="w-6 h-6 rounded object-cover"
+            />
             <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
               {siteName}
             </Link>

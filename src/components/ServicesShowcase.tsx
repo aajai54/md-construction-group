@@ -166,9 +166,9 @@ export default function ServicesShowcase({ services }: { services: ServiceItem[]
             >
               <div className="mb-4 flex items-start justify-between gap-4">
                 <div>
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-600">
+                  {/* <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-600">
                     Service {(index + 1).toString().padStart(2, "0")}
-                  </p>
+                  </p> */}
                   <h3 className="text-lg font-bold leading-tight text-gray-900 dark:text-white md:text-xl">
                     {service.title}
                   </h3>

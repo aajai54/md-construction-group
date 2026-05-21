@@ -7,7 +7,7 @@ import ScrollTagger from "../components/ScrollTagger";
 
 export default function LandingPage() {
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-  const bannerImageSrc = `${staticBasePath}/images/construction/hero.jpg`;
+  const bannerImageSrc = `${staticBasePath}/images/construction/home.jpg`;
 
   const servicesShowcase = [
     {

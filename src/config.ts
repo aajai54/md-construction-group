@@ -16,7 +16,8 @@ export const companyHighlights = [
   { value: "24x7", label: "Progress Visibility" },
 ];
 
-export const consultationPhone = "+91 90000 12345";
+export const consultationPhone = "+91 84287 88183";
+export const consultationEmail = "mdconstructionmails@gmail.com";
 
 // Last baseURL
 const defaultBaseURL = "https://md-construction-group.vercel.app";

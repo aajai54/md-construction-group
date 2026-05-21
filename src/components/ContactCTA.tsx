@@ -1,3 +1,4 @@
+import { consultationEmail, consultationPhone } from "@/config";
 import Image from "next/image";
 
 export default function ContactCTA() {
@@ -18,7 +19,7 @@ export default function ContactCTA() {
           {/* Contact Links Column */}
           <div className="flex flex-col gap-4 justify-between mt-0" data-tagger-item>
             <a
-              href="tel:+919000012345"
+              href={`tel:${consultationPhone}`}
               className="flex items-center gap-4 rounded-xl border border-amber-200/10 bg-black/20 p-4 text-amber-50 hover:bg-black/40 hover:border-amber-200/30 transition-all duration-300 group"
             >
               <span className="w-10 h-10 rounded-full bg-amber-100/5 border border-amber-100/15 flex items-center justify-center text-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-300 transition-colors">
@@ -28,12 +29,12 @@ export default function ContactCTA() {
               </span>
               <div>
                 <p className="text-xs font-medium text-amber-100/50 mb-0.5">Phone Number</p>
-                <p className="text-sm md:text-base font-semibold text-white tracking-wide">+91 90000 12345</p>
+                <p className="text-sm md:text-base font-semibold text-white tracking-wide">{consultationPhone}</p>
               </div>
             </a>
 
             <a
-              href="https://instagram.com/mdconstructiongroup"
+              href="https://instagram.com/md._construction"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 rounded-xl border border-amber-200/10 bg-black/20 p-4 text-amber-50 hover:bg-black/40 hover:border-amber-200/30 transition-all duration-300 group"
@@ -47,7 +48,7 @@ export default function ContactCTA() {
               </span>
               <div>
                 <p className="text-xs font-medium text-amber-100/50 mb-0.5">Instagram</p>
-                <p className="text-sm md:text-base font-semibold text-white tracking-wide">@mdconstructiongroup</p>
+                <p className="text-sm md:text-base font-semibold text-white tracking-wide">@mdconstruction</p>
               </div>
             </a>
 
@@ -63,12 +64,12 @@ export default function ContactCTA() {
               </span>
               <div>
                 <p className="text-xs font-medium text-amber-100/50 mb-0.5">Email Address</p>
-                <p className="text-sm md:text-base font-semibold text-white tracking-wide">hello@mdconstructiongroup.in</p>
+                <p className="text-sm md:text-base font-semibold text-white tracking-wide">{consultationEmail}</p>
               </div>
             </a>
           </div>
 
-          {/* QR Code Column */}
+          {/* Whatsapp QR Column */}
           <div className="rounded-xl border border-amber-200/10 bg-black/20 p-6 flex flex-col items-center justify-center text-center h-full min-h-[280px] mt-0" data-tagger-item>
             <p className="text-xs font-bold uppercase tracking-widest text-amber-400/80 mb-4">
               WhatsApp QR
@@ -83,6 +84,7 @@ export default function ContactCTA() {
               />
             </div>
           </div>
+
         </div>
       </div>
     </section>
