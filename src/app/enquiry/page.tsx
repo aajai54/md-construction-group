@@ -1,7 +1,11 @@
 import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
+import { getMessages } from "@/i18n/messages";
+import { type Locale } from "@/i18n/locales";
 
-export default function EnquiryPage() {
+export default function EnquiryPage({ locale = "en" }: { locale?: Locale }) {
+  const messages = getMessages(locale);
+
   return (
     <main className="min-h-screen">
       <ScrollTagger />
@@ -16,10 +20,10 @@ export default function EnquiryPage() {
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                title="Book a Free Consultation Form"
+                title={messages.enquiry.iframeTitle}
                 className="w-full h-[1750px] sm:h-[1550px] md:h-[1300px]"
               >
-                Loading...
+                {messages.enquiry.loading}
               </iframe>
             </div>
           </div>
@@ -27,7 +31,7 @@ export default function EnquiryPage() {
         </div>
       </section>
 
-      <ContactCTA />
+      <ContactCTA locale={locale} />
     </main>
   );
 }

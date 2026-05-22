@@ -1,42 +1,11 @@
 import Link from "next/link";
 import MarkdownContent from "@/components/MarkdownContent";
+import { getMessages } from "@/i18n/messages";
+import { type Locale, withLocale } from "@/i18n/locales";
 
-const content = `
-# Services And Packages
+export default function Docs({ locale = "en" }: { locale?: Locale }) {
+  const messages = getMessages(locale);
 
-MD Construction offers practical construction solutions for residential and commercial requirements.
-
-## Package Options
-
-### Essential
-- Practical scope for budget-conscious home construction
-- Standard quality materials and site supervision
-- Stage-wise progress communication
-
-### Comfort
-- Balanced package with upgraded finish options
-- Planning support for key functional spaces
-- Documented milestone quality checks
-
-### Signature
-- Premium package for customized requirements
-- Detailed design personalization support
-- Dedicated execution coordination
-
-## How We Execute
-
-1. Consultation and requirement discussion
-2. Scope and budget planning
-3. Design and material finalization
-4. Construction with milestone updates
-5. Inspection, handover, and support
-
-## Need A Customized Proposal?
-
-If your project includes phased execution, mixed-use spaces, or specific finishing standards, contact us for a tailored plan.
-`;
-
-export default function Docs() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -44,11 +13,10 @@ export default function Docs() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Services And Packages
+              {messages.docs.title}
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Explore our construction service offerings, package options, and
-              delivery approach.
+              {messages.docs.subtitle}
             </p>
           </div>
         </div>
@@ -58,13 +26,13 @@ export default function Docs() {
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-5 lg:px-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-            <MarkdownContent content={content} />
+            <MarkdownContent content={messages.docs.content} />
             <div className="mt-8">
               <Link
-                href="/about"
+                href={withLocale(locale, "/about")}
                 className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
-                Talk To An Advisor
+                {messages.docs.cta}
               </Link>
             </div>
           </div>

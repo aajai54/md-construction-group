@@ -1,7 +1,10 @@
 import { siteName } from "@/config";
 import Link from "next/link";
+import { getMessages } from "@/i18n/messages";
+import { type Locale, withLocale } from "@/i18n/locales";
 
-export default function Footer() {
+export default function Footer({ locale = "en" }: { locale?: Locale }) {
+  const messages = getMessages(locale);
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
   const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
 
@@ -25,43 +28,41 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-xs text-gray-400 mb-5 max-w-sm leading-relaxed">
-              Trusted construction partner for residential and commercial
-              projects. We focus on transparent execution, reliable quality,
-              and clear communication from kickoff to handover.
+              {messages.footer.brandDescription}
             </p>
             <div className="text-xs text-gray-400 space-y-1 mb-5">
             </div>
             {/* Social Links Matching Mockup Profile Icons */}
             <div className="flex items-center space-x-2 text-gray-400">
-              <a href="#" className="hover:text-white transition-colors" aria-label="Location">
+              <a href="#" className="hover:text-white transition-colors" aria-label={messages.footer.locationLabel}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
               </a>
-              <span>Ashok Nagar, Chennai</span>
+              <span>{messages.footer.locationValue}</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-xs font-bold text-white tracking-wider uppercase mb-4">
-              Quick Links
+              {messages.footer.quickLinks}
             </h3>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
+                <Link href={withLocale(locale)} className="hover:text-white transition-colors">
+                  {messages.footer.home}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About
+                <Link href={withLocale(locale, "/about")} className="hover:text-white transition-colors">
+                  {messages.footer.about}
                 </Link>
               </li>
               <li>
-                <Link href="/testimonial" className="hover:text-white transition-colors">
-                  Testimonial
+                <Link href={withLocale(locale, "/testimonial")} className="hover:text-white transition-colors">
+                  {messages.footer.testimonial}
                 </Link>
               </li>
             </ul>
@@ -94,7 +95,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-900 text-center text-[10px] text-gray-600">
-          <p>&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {siteName}. {messages.footer.allRightsReserved}</p>
         </div>
       </div>
     </footer>

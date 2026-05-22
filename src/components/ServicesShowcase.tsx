@@ -86,7 +86,17 @@ function ServiceIcon({ index }: { index: number }) {
   }
 }
 
-export default function ServicesShowcase({ services }: { services: ServiceItem[] }) {
+export default function ServicesShowcase({
+  services,
+  contactHref,
+  ctaLabel,
+  ariaLabel,
+}: {
+  services: ServiceItem[];
+  contactHref: string;
+  ctaLabel: string;
+  ariaLabel: string;
+}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isCursorInsideRef = useRef(false);
 
@@ -146,7 +156,7 @@ export default function ServicesShowcase({ services }: { services: ServiceItem[]
   return (
     <section
       className="w-full"
-      aria-label="Services"
+      aria-label={ariaLabel}
       onMouseEnter={() => {
         isCursorInsideRef.current = true;
       }}
@@ -192,10 +202,10 @@ export default function ServicesShowcase({ services }: { services: ServiceItem[]
               </div>
 
               <Link
-                href="#contact"
+                href={contactHref}
                 className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-orange-600 transition-all group-hover:gap-3 dark:text-orange-400"
               >
-                Discuss This Service
+                {ctaLabel}
                 <span aria-hidden>→</span>
               </Link>
             </article>

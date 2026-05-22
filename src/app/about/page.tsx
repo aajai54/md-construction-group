@@ -1,8 +1,12 @@
 // import Link from "next/link";
 import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
+import { getMessages } from "@/i18n/messages";
+import { type Locale } from "@/i18n/locales";
 
-export default function About() {
+export default function About({ locale = "en" }: { locale?: Locale }) {
+  const messages = getMessages(locale);
+
   return (
     <main className="min-h-screen">
       <ScrollTagger />
@@ -12,11 +16,10 @@ export default function About() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              About MD Construction
+              {messages.about.title}
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Building dependable residential and commercial spaces with
-              transparent planning, quality execution, and responsible delivery.
+              {messages.about.description}
             </p>
           </div>
         </div>
@@ -28,22 +31,18 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Our Mission
+                {messages.about.missionTitle}
               </h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                We are committed to making construction clear and manageable
-                for every client. Our process aligns design intent, project
-                planning, and on-site execution from day one.
+                {messages.about.missionParagraph1}
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                With experienced supervision and milestone-based communication,
-                we help you make confident decisions at every stage of your
-                build.
+                {messages.about.missionParagraph2}
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                Key Benefits
+                {messages.about.benefitsTitle}
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -61,7 +60,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    End-to-end support from consultation to handover
+                    {messages.about.benefits[0]}
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -79,7 +78,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Stage-wise quality checks and regular project updates
+                    {messages.about.benefits[1]}
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -97,7 +96,7 @@ export default function About() {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    Practical budgeting and timeline-focused execution
+                    {messages.about.benefits[2]}
                   </span>
                 </li>
               </ul>
@@ -133,7 +132,7 @@ export default function About() {
           </div>
         </div>
       </section> */}
-      <ContactCTA />
+      <ContactCTA locale={locale} />
     </main>
   );
 }

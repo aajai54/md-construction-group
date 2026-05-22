@@ -1,4 +1,5 @@
-import About from "../about/page";
+import { redirect } from "next/navigation";
+
 export default function AboutSessionPage() {
-  return <About />;
+  redirect("/en/about");
 }

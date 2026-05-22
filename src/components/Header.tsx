@@ -4,25 +4,32 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteName } from "@/config";
+import { getMessages } from "@/i18n/messages";
+import {
+  type Locale,
+  getLocaleFromPathname,
+  swapLocaleInPathname,
+  withLocale,
+} from "@/i18n/locales";
 
-const Header = () => {
+const Header = ({ locale = "en" }: { locale?: Locale }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState("/");
+  const [activeHref, setActiveHref] = useState(withLocale(locale));
   const pathname = usePathname();
+  const currentLocale = getLocaleFromPathname(pathname || "/");
+  const messages = getMessages(locale);
+  const homeHref = withLocale(locale);
 
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
   const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
 
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Contact Us", href: "/#contact" },
-    { name: "Testimonial", href: "/testimonial" },
-    { name: "About", href: "/about" },
-  ];
+  const navigation = messages.header.nav.map((item) => ({
+    name: item.name,
+    href: withLocale(locale, item.href),
+  }));
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (pathname !== homeHref) {
       setActiveHref(pathname);
       return;
     }
@@ -31,23 +38,23 @@ const Header = () => {
       const hash = window.location.hash;
 
       if (hash === "#services") {
-        setActiveHref("/#services");
+        setActiveHref(withLocale(locale, "#services"));
         return;
       }
 
       if (hash === "#contact") {
-        setActiveHref("/#contact");
+        setActiveHref(withLocale(locale, "#contact"));
         return;
       }
 
       if (window.scrollY < 140) {
-        setActiveHref("/");
+        setActiveHref(homeHref);
       }
     };
 
     const sectionToHref: Record<string, string> = {
-      services: "/#services",
-      contact: "/#contact",
+      services: withLocale(locale, "#services"),
+      contact: withLocale(locale, "#contact"),
     };
 
     const observer = new IntersectionObserver(
@@ -58,7 +65,7 @@ const Header = () => {
 
         if (!visibleEntries.length) {
           if (window.scrollY < 140) {
-            setActiveHref("/");
+            setActiveHref(homeHref);
           }
           return;
         }
@@ -91,15 +98,15 @@ const Header = () => {
       window.removeEventListener("hashchange", syncFromHashOrTop);
       window.removeEventListener("scroll", syncFromHashOrTop);
     };
-  }, [pathname]);
+  }, [homeHref, locale, pathname]);
 
   const isActive = (href: string) => {
-    if (href.startsWith("/#")) {
-      return pathname === "/" && activeHref === href;
+    if (href.includes("#")) {
+      return pathname === homeHref && activeHref === href;
     }
 
-    if (href === "/") {
-      return pathname === "/" && activeHref === "/";
+    if (href === homeHref) {
+      return pathname === homeHref && activeHref === homeHref;
     }
 
     return pathname === href;
@@ -118,7 +125,7 @@ const Header = () => {
               alt="Logo"
               className="w-6 h-6 rounded object-cover"
             />
-            <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
+            <Link href={homeHref} className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
               {siteName}
             </Link>
           </div>
@@ -141,10 +148,16 @@ const Header = () => {
               ))}
             </div>
             <Link
-              href="/enquiry"
+              href={withLocale(locale, "/enquiry")}
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
-              Book Free Consultation
+              {messages.header.desktopCta}
+            </Link>
+            <Link
+              href={swapLocaleInPathname(pathname || homeHref, currentLocale === "en" ? "ta" : "en")}
+              className="text-sm font-semibold text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+            >
+              {currentLocale === "en" ? "தமிழ்" : "EN"}
             </Link>
           </div>
 
@@ -155,7 +168,7 @@ const Header = () => {
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-800"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{messages.header.openMainMenu}</span>
               {!isMenuOpen ? (
                 <svg
                   className="block h-6 w-6"
@@ -200,11 +213,20 @@ const Header = () => {
             ))}
             <div className="px-3 pt-2">
               <Link
-                href="/enquiry"
+                href={withLocale(locale, "/enquiry")}
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Get Free Consultation
+                {messages.header.mobileCta}
+              </Link>
+            </div>
+            <div className="px-3 pb-1">
+              <Link
+                href={swapLocaleInPathname(pathname || homeHref, currentLocale === "en" ? "ta" : "en")}
+                className="block text-center text-sm font-semibold text-gray-600 dark:text-gray-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {messages.header.languageSwitch}: {currentLocale === "en" ? "தமிழ்" : "EN"}
               </Link>
             </div>
           </div>
