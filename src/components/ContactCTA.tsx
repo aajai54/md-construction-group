@@ -3,11 +3,12 @@ import Image from "next/image";
 
 export default function ContactCTA() {
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-  const whatsappQrImageSrc = `${staticBasePath}/images/whatsapp-qr.avif`;
+  const whatsappQrImageSrc = `${staticBasePath}/images/whatsapp-qr.png`;
+  const instagramQrImageSrc = `${staticBasePath}/images/instagram-qr.png`;
 
   return (
     <section id="contact" className="scroll-mt-24 bg-[#1c1816] dark:bg-[#0d0b0a] pt-8 md:pt-12 pb-16 md:pb-24 relative overflow-hidden" data-tagger>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-tagger-item>
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
           Let’s Build Your Dream Together
         </h2>
@@ -15,7 +16,7 @@ export default function ContactCTA() {
           Start your construction journey with MD Construction and get
           a clear plan for budget, timeline, and execution.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch text-left max-w-3xl mx-auto mt-0" data-tagger-item>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch text-left max-w-6xl mx-auto mt-0" data-tagger-item>
           {/* Contact Links Column */}
           <div className="flex flex-col gap-4 justify-between mt-0" data-tagger-item>
             <a
@@ -72,7 +73,7 @@ export default function ContactCTA() {
           {/* Whatsapp QR Column */}
           <div className="rounded-xl border border-amber-200/10 bg-black/20 p-6 flex flex-col items-center justify-center text-center h-full min-h-[280px] mt-0" data-tagger-item>
             <p className="text-xs font-bold uppercase tracking-widest text-amber-400/80 mb-4">
-              WhatsApp QR
+              WhatsApp
             </p>
             <div className="bg-white rounded-xl p-3 shadow-xl ring-1 ring-black/5 transition-transform duration-300 hover:scale-[1.02]">
               <Image
@@ -84,7 +85,21 @@ export default function ContactCTA() {
               />
             </div>
           </div>
-
+          {/* Instagram QR Column */}
+          <div className="rounded-xl border border-amber-200/10 bg-black/20 p-6 flex flex-col items-center justify-center text-center h-full min-h-[280px] mt-0" data-tagger-item>
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-400/80 mb-4">
+              Instagram
+            </p>
+            <div className="bg-white rounded-xl p-3 shadow-xl ring-1 ring-black/5 transition-transform duration-300 hover:scale-[1.02]">
+              <Image
+                src={instagramQrImageSrc}
+                alt="Instagram QR code"
+                width={160}
+                height={160}
+                className="w-[160px] h-[160px] object-contain rounded-lg"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
