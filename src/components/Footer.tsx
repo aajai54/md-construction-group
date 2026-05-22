@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
 
           {/* Resources */}
-          <div>
+          {/* <div>
             <h3 className="text-xs font-bold text-white tracking-wider uppercase mb-4">
               Resources
             </h3>
@@ -83,13 +83,13 @@ export default function Footer() {
                   Construction Process
                 </a>
               </li>
-              {/* <li>
+              <li>
                 <a href={`tel:${consultationPhone}`} className="hover:text-white transition-colors">
                   Request Consultation
                 </a>
-              </li> */}
+              </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Bar */}

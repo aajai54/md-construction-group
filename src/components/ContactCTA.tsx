@@ -9,7 +9,7 @@ export default function ContactCTA() {
     <section id="contact" className="scroll-mt-24 bg-[#1c1816] dark:bg-[#0d0b0a] pt-8 md:pt-12 pb-16 md:pb-24 relative overflow-hidden" data-tagger>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-tagger-item>
         <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
-          Let’s Build Your Vision Together
+          Let’s Build Your Dream Together
         </h2>
         <p className="text-sm md:text-base text-amber-100/70 mb-12 max-w-xl mx-auto leading-relaxed">
           Start your construction journey with MD Construction and get

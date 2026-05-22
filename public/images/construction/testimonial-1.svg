@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Testimonial person sample image one">
-  <rect width="600" height="600" fill="#dbeafe"/>
-  <circle cx="300" cy="220" r="120" fill="#2563eb"/>
-  <rect x="140" y="370" width="320" height="170" rx="85" fill="#1d4ed8"/>
-  <text x="300" y="560" text-anchor="middle" font-size="30" fill="#1e3a8a" font-family="Arial, Helvetica, sans-serif" font-weight="700">Client Story 01</text>
-</svg>
