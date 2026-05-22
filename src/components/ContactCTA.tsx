@@ -5,6 +5,7 @@ export default function ContactCTA() {
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
   const whatsappQrImageSrc = `${staticBasePath}/images/whatsapp-qr.png`;
   const instagramQrImageSrc = `${staticBasePath}/images/instagram-qr.png`;
+  const whatsappChatLink = `https://wa.me/${consultationPhone.replace(/\D/g, "")}`;
 
   return (
     <section id="contact" className="scroll-mt-24 bg-[#1c1816] dark:bg-[#0d0b0a] pt-8 md:pt-12 pb-16 md:pb-24 relative overflow-hidden" data-tagger>
@@ -31,6 +32,23 @@ export default function ContactCTA() {
               <div>
                 <p className="text-xs font-medium text-amber-100/50 mb-0.5">Phone Number</p>
                 <p className="text-sm md:text-base font-semibold text-white tracking-wide">{consultationPhone}</p>
+              </div>
+            </a>
+
+            <a
+              href={whatsappChatLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 rounded-xl border border-amber-200/10 bg-black/20 p-4 text-amber-50 hover:bg-black/40 hover:border-amber-200/30 transition-all duration-300 group"
+            >
+              <span className="w-10 h-10 rounded-full bg-amber-100/5 border border-amber-100/15 flex items-center justify-center text-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-300 transition-colors">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75h6.75M8.625 13.5h4.5M6 20.25l1.5-3.75a8.25 8.25 0 111.303 1.303L6 20.25z" />
+                </svg>
+              </span>
+              <div>
+                <p className="text-xs font-medium text-amber-100/50 mb-0.5">WhatsApp</p>
+                <p className="text-sm md:text-base font-semibold text-white tracking-wide">Chat on WhatsApp</p>
               </div>
             </a>
 

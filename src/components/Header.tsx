@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteName } from "@/config";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("/");
   const pathname = usePathname();
 
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
@@ -19,6 +20,90 @@ const Header = () => {
     { name: "Testimonial", href: "/testimonial" },
     { name: "About", href: "/about" },
   ];
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveHref(pathname);
+      return;
+    }
+
+    const syncFromHashOrTop = () => {
+      const hash = window.location.hash;
+
+      if (hash === "#services") {
+        setActiveHref("/#services");
+        return;
+      }
+
+      if (hash === "#contact") {
+        setActiveHref("/#contact");
+        return;
+      }
+
+      if (window.scrollY < 140) {
+        setActiveHref("/");
+      }
+    };
+
+    const sectionToHref: Record<string, string> = {
+      services: "/#services",
+      contact: "/#contact",
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visibleEntries.length) {
+          if (window.scrollY < 140) {
+            setActiveHref("/");
+          }
+          return;
+        }
+
+        const topVisible = visibleEntries[0];
+        const sectionId = (topVisible.target as HTMLElement).id;
+        const nextHref = sectionToHref[sectionId];
+
+        if (nextHref) {
+          setActiveHref(nextHref);
+        }
+      },
+      {
+        threshold: [0.15, 0.35, 0.6],
+        rootMargin: "-20% 0px -55% 0px",
+      },
+    );
+
+    Object.keys(sectionToHref).forEach((sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) observer.observe(section);
+    });
+
+    syncFromHashOrTop();
+    window.addEventListener("hashchange", syncFromHashOrTop);
+    window.addEventListener("scroll", syncFromHashOrTop, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("hashchange", syncFromHashOrTop);
+      window.removeEventListener("scroll", syncFromHashOrTop);
+    };
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/#")) {
+      return pathname === "/" && activeHref === href;
+    }
+
+    if (href === "/") {
+      return pathname === "/" && activeHref === "/";
+    }
+
+    return pathname === href;
+  };
 
   return (
     <header className="bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-800 sticky top-0 z-50">
@@ -46,7 +131,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   className={`text-sm font-medium transition-colors ${
-                    pathname === item.href
+                    isActive(item.href)
                       ? "text-orange-500 font-semibold"
                       : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   }`}
@@ -55,12 +140,12 @@ const Header = () => {
                 </Link>
               ))}
             </div>
-            <a
-              href="#contact"
+            <Link
+              href="/enquiry"
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
-              Get Free Consultation
-            </a>
+              Book Free Consultation
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -104,7 +189,7 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 className={`block rounded-md px-3 py-2 text-base font-medium ${
-                  pathname === item.href
+                  isActive(item.href)
                     ? "bg-orange-50 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400"
                     : "text-gray-500 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800"
                 }`}
@@ -114,13 +199,13 @@ const Header = () => {
               </Link>
             ))}
             <div className="px-3 pt-2">
-              <a
-                href="#contact"
+              <Link
+                href="/enquiry"
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Get Free Consultation
-              </a>
+              </Link>
             </div>
           </div>
         )}
