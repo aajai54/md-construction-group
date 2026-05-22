@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-
+import LandingPage from "../LandingPage";
 export default function ServicesScrollPage() {
-  redirect("/en#services");
+  return <LandingPage />;
 }

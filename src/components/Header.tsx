@@ -4,32 +4,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteName } from "@/config";
-import { getMessages } from "@/i18n/messages";
-import {
-  type Locale,
-  getLocaleFromPathname,
-  swapLocaleInPathname,
-  withLocale,
-} from "@/i18n/locales";
 
-const Header = ({ locale = "en" }: { locale?: Locale }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState(withLocale(locale));
+  const [activeHref, setActiveHref] = useState("/");
   const pathname = usePathname();
-  const currentLocale = getLocaleFromPathname(pathname || "/");
-  const messages = getMessages(locale);
-  const homeHref = withLocale(locale);
 
   const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
   const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
 
-  const navigation = messages.header.nav.map((item) => ({
-    name: item.name,
-    href: withLocale(locale, item.href),
-  }));
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/#services" },
+    { name: "Contact Us", href: "/#contact" },
+    { name: "Testimonial", href: "/testimonial" },
+    { name: "About", href: "/about" },
+  ];
 
   useEffect(() => {
-    if (pathname !== homeHref) {
+    if (pathname !== "/") {
       setActiveHref(pathname);
       return;
     }
@@ -38,23 +31,23 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
       const hash = window.location.hash;
 
       if (hash === "#services") {
-        setActiveHref(withLocale(locale, "#services"));
+        setActiveHref("/#services");
         return;
       }
 
       if (hash === "#contact") {
-        setActiveHref(withLocale(locale, "#contact"));
+        setActiveHref("/#contact");
         return;
       }
 
       if (window.scrollY < 140) {
-        setActiveHref(homeHref);
+        setActiveHref("/");
       }
     };
 
     const sectionToHref: Record<string, string> = {
-      services: withLocale(locale, "#services"),
-      contact: withLocale(locale, "#contact"),
+      services: "/#services",
+      contact: "/#contact",
     };
 
     const observer = new IntersectionObserver(
@@ -65,7 +58,7 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
 
         if (!visibleEntries.length) {
           if (window.scrollY < 140) {
-            setActiveHref(homeHref);
+            setActiveHref("/");
           }
           return;
         }
@@ -98,15 +91,15 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
       window.removeEventListener("hashchange", syncFromHashOrTop);
       window.removeEventListener("scroll", syncFromHashOrTop);
     };
-  }, [homeHref, locale, pathname]);
+  }, [pathname]);
 
   const isActive = (href: string) => {
-    if (href.includes("#")) {
-      return pathname === homeHref && activeHref === href;
+    if (href.startsWith("/#")) {
+      return pathname === "/" && activeHref === href;
     }
 
-    if (href === homeHref) {
-      return pathname === homeHref && activeHref === homeHref;
+    if (href === "/") {
+      return pathname === "/" && activeHref === "/";
     }
 
     return pathname === href;
@@ -125,7 +118,7 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
               alt="Logo"
               className="w-6 h-6 rounded object-cover"
             />
-            <Link href={homeHref} className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
+            <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
               {siteName}
             </Link>
           </div>
@@ -148,16 +141,10 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
               ))}
             </div>
             <Link
-              href={withLocale(locale, "/enquiry")}
+              href="/enquiry"
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
-              {messages.header.desktopCta}
-            </Link>
-            <Link
-              href={swapLocaleInPathname(pathname || homeHref, currentLocale === "en" ? "ta" : "en")}
-              className="text-sm font-semibold text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-            >
-              {currentLocale === "en" ? "தமிழ்" : "EN"}
+              Book Free Consultation
             </Link>
           </div>
 
@@ -168,7 +155,7 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-800"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <span className="sr-only">{messages.header.openMainMenu}</span>
+              <span className="sr-only">Open main menu</span>
               {!isMenuOpen ? (
                 <svg
                   className="block h-6 w-6"
@@ -213,20 +200,11 @@ const Header = ({ locale = "en" }: { locale?: Locale }) => {
             ))}
             <div className="px-3 pt-2">
               <Link
-                href={withLocale(locale, "/enquiry")}
+                href="/enquiry"
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {messages.header.mobileCta}
-              </Link>
-            </div>
-            <div className="px-3 pb-1">
-              <Link
-                href={swapLocaleInPathname(pathname || homeHref, currentLocale === "en" ? "ta" : "en")}
-                className="block text-center text-sm font-semibold text-gray-600 dark:text-gray-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {messages.header.languageSwitch}: {currentLocale === "en" ? "தமிழ்" : "EN"}
+                Get Free Consultation
               </Link>
             </div>
           </div>

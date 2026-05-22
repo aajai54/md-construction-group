@@ -1,16 +1,9 @@
 import { siteName } from "@/config";
-import { getMessages } from "@/i18n/messages";
-import { defaultLocale, isLocale } from "@/i18n/locales";
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const localeParam = searchParams.get("locale") ?? defaultLocale;
-  const locale = isLocale(localeParam) ? localeParam : defaultLocale;
-  const messages = getMessages(locale);
-
+export async function GET() {
   return new ImageResponse(
     (
       <div
@@ -26,7 +19,7 @@ export async function GET(request: Request) {
           alignItems: "center",
         }}
       >
-        {messages.metadata.title || siteName}
+        {siteName}
       </div>
     ),
     {

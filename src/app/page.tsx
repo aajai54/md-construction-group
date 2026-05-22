@@ -1,5 +1,2 @@
-import { redirect } from "next/navigation";
-
-export default function RootPage() {
-	redirect("/en");
-}
+import HomePage from "./home/page";
+export default HomePage;

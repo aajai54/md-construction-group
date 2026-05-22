@@ -1,12 +1,8 @@
 // import Link from "next/link";
 import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
-import { getMessages } from "@/i18n/messages";
-import { type Locale } from "@/i18n/locales";
 
-export default function About({ locale = "en" }: { locale?: Locale }) {
-  const messages = getMessages(locale);
-
+export default function About() {
   return (
     <main className="min-h-screen">
       <ScrollTagger />
@@ -16,10 +12,11 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              {messages.about.title}
+              About MD Construction
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              {messages.about.description}
+              Building dependable residential and commercial spaces with
+              transparent planning, quality execution, and responsible delivery.
             </p>
           </div>
         </div>
@@ -31,18 +28,22 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                {messages.about.missionTitle}
+                Our Mission
               </h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                {messages.about.missionParagraph1}
+                We are committed to making construction clear and manageable
+                for every client. Our process aligns design intent, project
+                planning, and on-site execution from day one.
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                {messages.about.missionParagraph2}
+                With experienced supervision and milestone-based communication,
+                we help you make confident decisions at every stage of your
+                build.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                {messages.about.benefitsTitle}
+                Key Benefits
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -60,7 +61,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    {messages.about.benefits[0]}
+                    End-to-end support from consultation to handover
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -78,7 +79,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    {messages.about.benefits[1]}
+                    Stage-wise quality checks and regular project updates
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -96,7 +97,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                     />
                   </svg>
                   <span className="text-gray-700 dark:text-gray-300">
-                    {messages.about.benefits[2]}
+                    Practical budgeting and timeline-focused execution
                   </span>
                 </li>
               </ul>
@@ -132,7 +133,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
           </div>
         </div>
       </section> */}
-      <ContactCTA locale={locale} />
+      <ContactCTA />
     </main>
   );
 }

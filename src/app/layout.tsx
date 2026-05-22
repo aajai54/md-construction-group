@@ -2,12 +2,13 @@ import "@/app/globals.css";
 
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { baseURL, siteName } from "@/config";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { baseURL, description, siteName, title } from "@/config";
 
 export const metadata: Metadata = {
-  title: `${siteName} | Trusted Home And Commercial Builders`,
-  description:
-    "End-to-end construction services by MD Construction with transparent planning, quality-first execution, and on-time delivery.",
+  title,
+  description,
   robots: {
     index: true,
     follow: true,
@@ -26,14 +27,13 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(baseURL),
   openGraph: {
-    title: `${siteName} | Trusted Home And Commercial Builders`,
-    description:
-      "End-to-end construction services by MD Construction with transparent planning, quality-first execution, and on-time delivery.",
+    title,
+    description,
     siteName,
     url: baseURL,
     images: [
       {
-        url: "/api/og?locale=en",
+        url: "/api/og",
         alt: `${siteName} Open Graph Image`,
       },
     ],
@@ -48,7 +48,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Header />
+
         {children}
+
+        <Footer />
 
         {/* <Analytics /> */}
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
