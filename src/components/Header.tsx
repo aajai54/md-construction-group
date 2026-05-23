@@ -11,8 +11,7 @@ const Header = () => {
   const [activeHref, setActiveHref] = useState("/");
   const pathname = usePathname();
 
-  const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-  const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
+  const bannerImageSrc = "/images/construction/logo.jpg";
 
   const navigation = [
     { name: "Home", href: "/" },

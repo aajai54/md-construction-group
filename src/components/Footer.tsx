@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
-  const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-  const bannerImageSrc = `${staticBasePath}/images/construction/logo.jpg`;
+  const bannerImageSrc = "/images/construction/logo.jpg";
 
   return (
     <footer className="bg-[#0a0a0a] text-gray-400 border-t border-gray-900">

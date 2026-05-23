@@ -2,9 +2,8 @@ import { consultationEmail, consultationPhone } from "@/config";
 import Image from "next/image";
 
 export default function ContactCTA() {
-  const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-  const whatsappQrImageSrc = `${staticBasePath}/images/whatsapp-qr.png`;
-  const instagramQrImageSrc = `${staticBasePath}/images/instagram-qr.png`;
+  const whatsappQrImageSrc = "/images/whatsapp-qr.png";
+  const instagramQrImageSrc = "/images/instagram-qr.png";
   const whatsappChatLink = `https://wa.me/${consultationPhone.replace(/\D/g, "")}`;
 
   return (

@@ -17,8 +17,7 @@ interface Testimonial {
   media: TestimonialMedia;
 }
 
-const staticBasePath = process.env.NODE_ENV === "production" ? "/md-construction-group" : "";
-const testimonialBasePath = `${staticBasePath}/images/testimonial`;
+const testimonialBasePath = "/images/testimonial";
 
 const testimonials: Testimonial[] = [
   {
