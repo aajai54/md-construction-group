@@ -1,0 +1,52 @@
+{
+  "Header": {
+    "nav": {
+      "home": "Home",
+      "services": "Services",
+      "contact": "Contact Us",
+      "testimonial": "Testimonial",
+      "about": "About"
+    },
+    "cta": "Book Free Consultation",
+    "ctaMobile": "Get Free Consultation",
+    "menuOpen": "Open main menu"
+  },
+  "About": {
+    "meta": "About",
+    "hero": {
+      "title": "About MD Construction",
+      "subtitle": "Building dependable residential and commercial spaces with transparent planning, quality execution, and responsible delivery."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "p1": "We are committed to making construction clear and manageable for every client. Our process aligns design intent, project planning, and on-site execution from day one.",
+      "p2": "With experienced supervision and milestone-based communication, we help you make confident decisions at every stage of your build."
+    },
+    "benefits": {
+      "title": "Key Benefits",
+      "items": [
+        "End-to-end support from consultation to handover",
+        "Stage-wise quality checks and regular project updates",
+        "Practical budgeting and timeline-focused execution"
+      ]
+    }
+  },
+  "ContactCTA": {
+    "title": "Let's Build Your Dream Together",
+    "subtitle": "Start your construction journey with MD Construction and get a clear plan for budget, timeline, and execution.",
+    "phone": "Phone Number",
+    "whatsapp": "Chat on WhatsApp",
+    "email": "Email Address"
+  },
+  "Footer": {
+    "description": "Trusted construction partner for residential and commercial projects. We focus on transparent execution, reliable quality, and clear communication from kickoff to handover.",
+    "location": "Ashok Nagar, Chennai",
+    "quickLinks": {
+      "title": "Quick Links",
+      "home": "Home",
+      "about": "About",
+      "testimonial": "Testimonial"
+    },
+    "rights": "All rights reserved."
+  }
+}

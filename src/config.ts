@@ -17,6 +17,7 @@ export const companyHighlights = [
 ];
 
 export const consultationPhone = "+91 70109 084803";
+export const consultationWhatsapp = "70109084803";
 export const consultationEmail = "mdconstructionmails@gmail.com";
 
 const defaultBaseURL = "https://mdconstructiongroups.com";

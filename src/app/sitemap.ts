@@ -3,15 +3,16 @@ import { baseURL } from "@/config";
 
 export const dynamic = "force-static";
 
+const locales = ["en", "ta"];
+const routes = ["", "/about", "/testimonial", "/enquiry"];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: baseURL,
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseURL}/about`,
-      lastModified: new Date(),
-    },
-  ];
+  const lastModified = new Date();
+
+  return locales.flatMap((locale) =>
+    routes.map((route) => ({
+      url: `${baseURL}/${locale}${route}`,
+      lastModified,
+    }))
+  );
 }

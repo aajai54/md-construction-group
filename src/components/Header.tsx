@@ -3,83 +3,93 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { siteName } from "@/config";
+
+const supportedLocales = ["en", "ta"];
+
+function getLocaleFromPath(pathname: string): string {
+  const firstSegment = pathname.split("/").filter(Boolean)[0];
+  return supportedLocales.includes(firstSegment) ? firstSegment : "en";
+}
+
+function normalizePath(path: string): string {
+  if (!path) return "/";
+  const [withoutHash] = path.split("#");
+  if (withoutHash === "/") return "/";
+  return withoutHash.replace(/\/+$/, "") || "/";
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState("/");
+  const [activeHref, setActiveHref] = useState("/en");
+
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = getLocaleFromPath(pathname);
+  const currentLocale = useLocale();
+  const homePath = `/${locale}`;
+  const normalizedPathname = normalizePath(pathname);
+  const normalizedHomePath = normalizePath(homePath);
+  const nextLocale = currentLocale === "en" ? "ta" : "en";
+  const localeLabel = currentLocale === "en" ? "தமிழ்" : "EN";
+  const t = useTranslations("Header");
 
   const bannerImageSrc = "/images/construction/logo.jpg";
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Contact Us", href: "/#contact" },
-    { name: "Testimonial", href: "/testimonial" },
-    { name: "About", href: "/about" },
+    { key: "home",        href: homePath },
+    { key: "services",    href: `${homePath}#services` },
+    { key: "contact",     href: `${homePath}#contact` },
+    { key: "testimonial", href: `${homePath}/testimonial` },
+    { key: "about",       href: `${homePath}/about` },
   ];
 
+  const switchLocale = (newLocale: string) => {
+    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+    router.push(newPath);
+  };
+
   useEffect(() => {
-    if (pathname !== "/") {
+    if (normalizedPathname !== normalizedHomePath) {
       setActiveHref(pathname);
       return;
     }
 
     const syncFromHashOrTop = () => {
       const hash = window.location.hash;
-
-      if (hash === "#services") {
-        setActiveHref("/#services");
-        return;
-      }
-
-      if (hash === "#contact") {
-        setActiveHref("/#contact");
-        return;
-      }
-
-      if (window.scrollY < 140) {
-        setActiveHref("/");
-      }
+      if (hash === "#services") { setActiveHref(`${homePath}#services`); return; }
+      if (hash === "#contact")  { setActiveHref(`${homePath}#contact`);  return; }
+      if (window.scrollY < 140) setActiveHref(homePath);
     };
 
     const sectionToHref: Record<string, string> = {
-      services: "/#services",
-      contact: "/#contact",
+      services: `${homePath}#services`,
+      contact:  `${homePath}#contact`,
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
+          .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (!visibleEntries.length) {
-          if (window.scrollY < 140) {
-            setActiveHref("/");
-          }
+          if (window.scrollY < 140) setActiveHref(homePath);
           return;
         }
 
-        const topVisible = visibleEntries[0];
-        const sectionId = (topVisible.target as HTMLElement).id;
+        const sectionId = (visibleEntries[0].target as HTMLElement).id;
         const nextHref = sectionToHref[sectionId];
-
-        if (nextHref) {
-          setActiveHref(nextHref);
-        }
+        if (nextHref) setActiveHref(nextHref);
       },
-      {
-        threshold: [0.15, 0.35, 0.6],
-        rootMargin: "-20% 0px -55% 0px",
-      },
+      { threshold: [0.15, 0.35, 0.6], rootMargin: "-20% 0px -55% 0px" }
     );
 
-    Object.keys(sectionToHref).forEach((sectionId) => {
-      const section = document.getElementById(sectionId);
-      if (section) observer.observe(section);
+    Object.keys(sectionToHref).forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
     syncFromHashOrTop();
@@ -91,28 +101,29 @@ const Header = () => {
       window.removeEventListener("hashchange", syncFromHashOrTop);
       window.removeEventListener("scroll", syncFromHashOrTop);
     };
-  }, [pathname]);
+  }, [pathname, homePath, normalizedPathname, normalizedHomePath]);
 
   const isActive = (href: string) => {
-    if (href.startsWith("/#")) {
-      return pathname === "/" && activeHref === href;
+    const normalizedHref = normalizePath(href);
+
+    if (href.includes("#")) {
+      return normalizedPathname === normalizedHomePath && activeHref === href;
     }
 
-    if (href === "/") {
-      return pathname === "/" && activeHref === "/";
+    if (normalizedHref === normalizedHomePath) {
+      return normalizedPathname === normalizedHomePath && normalizePath(activeHref) === normalizedHomePath;
     }
 
-    return pathname === href;
+    return normalizedPathname === normalizedHref;
   };
 
   return (
     <header className="bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-800 sticky top-0 z-50">
       <nav className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-6" aria-label="Top">
         <div className="flex h-16 items-center justify-between">
+
+          {/* Logo */}
           <div className="flex items-center space-x-2">
-            {/* <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
-              M
-            </div> */}
             <Image
               src={bannerImageSrc}
               alt="Logo"
@@ -120,7 +131,7 @@ const Header = () => {
               height={24}
               className="w-6 h-6 rounded object-cover"
             />
-            <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
+            <Link href={homePath} className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
               {siteName}
             </Link>
           </div>
@@ -130,7 +141,7 @@ const Header = () => {
             <div className="flex space-x-6">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.key}
                   href={item.href}
                   className={`text-sm font-medium transition-colors ${
                     isActive(item.href)
@@ -138,44 +149,51 @@ const Header = () => {
                       : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   }`}
                 >
-                  {item.name}
+                  {t(`nav.${item.key}`)}
                 </Link>
               ))}
             </div>
+
             <Link
-              href="/enquiry"
+              href={`${homePath}/enquiry`}
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
-              Book Free Consultation
+              {t("cta")}
             </Link>
+            
+            {/* Language Switcher */}
+            <button
+              onClick={() => switchLocale(nextLocale)}
+              className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+            >
+              {localeLabel}
+            </button>
+
+            
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            {/* Language Switcher Mobile */}
+            <button
+              onClick={() => switchLocale(nextLocale)}
+              className="px-1 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+            >
+              {localeLabel}
+            </button>
+
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-800"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{t("menuOpen")}</span>
               {!isMenuOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                >
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               ) : (
-                <svg
-                  className="block h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                >
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               )}
@@ -188,7 +206,7 @@ const Header = () => {
           <div className="md:hidden border-t border-gray-100 dark:border-gray-800 py-3 space-y-1">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.key}
                 href={item.href}
                 className={`block rounded-md px-3 py-2 text-base font-medium ${
                   isActive(item.href)
@@ -197,16 +215,16 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.name}
+                {t(`nav.${item.key}`)}
               </Link>
             ))}
             <div className="px-3 pt-2">
               <Link
-                href="/enquiry"
+                href={`${homePath}/enquiry`}
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Get Free Consultation
+                {t("ctaMobile")}
               </Link>
             </div>
           </div>
