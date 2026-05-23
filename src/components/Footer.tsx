@@ -1,4 +1,5 @@
 import { siteName } from "@/config";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -15,11 +16,13 @@ export default function Footer() {
               {/* <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
                 M
               </div> */}
-              <img
-              src={bannerImageSrc}
-              alt="Logo"
-              className="w-6 h-6 rounded object-cover"
-            />
+              <Image
+                src={bannerImageSrc}
+                alt="Logo"
+                width={24}
+                height={24}
+                className="w-6 h-6 rounded object-cover"
+              />
               <h3 className="text-sm font-bold text-white tracking-tight">
                 {siteName}
               </h3>

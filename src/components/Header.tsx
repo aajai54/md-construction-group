@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteName } from "@/config";
@@ -113,9 +114,11 @@ const Header = () => {
             {/* <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-xs">
               M
             </div> */}
-            <img
+            <Image
               src={bannerImageSrc}
               alt="Logo"
+              width={24}
+              height={24}
               className="w-6 h-6 rounded object-cover"
             />
             <Link href="/" className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">

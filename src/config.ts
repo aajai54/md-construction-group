@@ -11,12 +11,12 @@ export const description =
 
 export const companyHighlights = [
   { value: "250+", label: "Projects Delivered" },
-  { value: "12+", label: "Years Of Experience" },
+  { value: "25+", label: "Years Of Experience" },
   { value: "98%", label: "On-Time Handover" },
   { value: "24x7", label: "Progress Visibility" },
 ];
 
-export const consultationPhone = "+91 84287 88183";
+export const consultationPhone = "+91 70109 084803";
 export const consultationEmail = "mdconstructionmails@gmail.com";
 
 // Last baseURL

@@ -1,4 +1,5 @@
 // import Link from "next/link";
+import Image from "next/image";
 import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
 
@@ -134,7 +135,7 @@ function ImageMosaic({ srcs }: { srcs: string[] }) {
   if (srcs.length === 1) {
     return (
       <div className="h-64 overflow-hidden">
-        <img src={srcs[0]} alt="Project" className="w-full h-full object-cover" />
+        <Image src={srcs[0]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
       </div>
     );
   }
@@ -143,7 +144,7 @@ function ImageMosaic({ srcs }: { srcs: string[] }) {
     return (
       <div className="grid grid-cols-2 gap-px h-64 overflow-hidden">
         {srcs.map((src, i) => (
-          <img key={i} src={src} alt="Project" className="w-full h-full object-cover" />
+          <Image key={i} src={src} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
         ))}
       </div>
     );
@@ -152,10 +153,10 @@ function ImageMosaic({ srcs }: { srcs: string[] }) {
   // 3 images: 1 large left + 2 stacked right
   return (
     <div className="grid grid-cols-2 gap-px h-64 overflow-hidden">
-      <img src={srcs[0]} alt="Project" className="w-full h-full object-cover row-span-2" />
+      <Image src={srcs[0]} alt="Project" width={800} height={1200} className="w-full h-full object-cover row-span-2" />
       <div className="grid grid-rows-2 gap-px">
-        <img src={srcs[1]} alt="Project" className="w-full h-full object-cover" />
-        <img src={srcs[2]} alt="Project" className="w-full h-full object-cover" />
+        <Image src={srcs[1]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
+        <Image src={srcs[2]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
       </div>
     </div>
   );
