@@ -156,7 +156,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 md:py-24 bg-gray-50/50 dark:bg-gray-900/50 border-t border-b border-gray-100 dark:border-gray-800/60" data-tagger>
+      <section className="why-bg py-12 md:py-16 bg-gray-50/50 dark:bg-gray-900/50 border-t border-b border-gray-100 dark:border-gray-800/60" data-tagger>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="mb-12" data-tagger-item>
             <span className="text-xs font-bold tracking-wider text-orange-600 uppercase block mb-2">
