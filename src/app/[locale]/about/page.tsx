@@ -1,5 +1,6 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
 import CheckIcon from "@/components/CheckIcon";
 
@@ -58,8 +59,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <ContactCTA />
     </main>
   );
 }

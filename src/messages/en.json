@@ -11,6 +11,129 @@
     "ctaMobile": "Get Free Consultation",
     "menuOpen": "Open main menu"
   },
+  "HomePage": {
+    "hero": {
+      "badge": "★ Trusted Since Day One",
+      "title": "Trusted Home &",
+      "titleHighlight": "Commercial Builders",
+      "description": "End-to-end construction services by MD Construction with transparent planning, quality-first execution, and on-time delivery.",
+      "cta": "Contact Us",
+      "onTimeTitle": "On-Time Delivery",
+      "onTimeSubtitle": "Every project, every time"
+    },
+    "services": {
+      "label": "Our Services",
+      "title": "Built To Perform. Designed To Last.",
+      "description": "A premium construction service stack, from structural planning to full execution, tailored for dependable outcomes.",
+      "items": [
+        {
+          "title": "Building Construction & Development",
+          "hook": "From blueprint to final handover.",
+          "points": [
+            "Residential and commercial end-to-end execution",
+            "Quality-first materials and site supervision",
+            "Timeline-focused delivery with stage planning",
+            "Designs built for durability and modern living"
+          ]
+        },
+        {
+          "title": "Interior Turnkey Projects",
+          "hook": "Move into a fully finished space.",
+          "points": [
+            "Planning, execution, and finishing under one team",
+            "Functional layouts matched to your lifestyle",
+            "Material, lighting, and furniture coordination",
+            "Single-point accountability from start to finish"
+          ]
+        },
+        {
+          "title": "Repair & Rehabilitation",
+          "hook": "Restore strength. Renew performance.",
+          "points": [
+            "Structural repairs for aging or damaged buildings",
+            "Waterproofing and leakage prevention measures",
+            "Renovation for safety and modern functionality",
+            "Long-life upgrades with minimal disruption"
+          ]
+        },
+        {
+          "title": "Project Management",
+          "hook": "Control cost, quality, and timelines.",
+          "points": [
+            "Clear milestones and execution roadmaps",
+            "Cross-team coordination and resource planning",
+            "Progress tracking with practical reporting",
+            "Risk mitigation for predictable delivery"
+          ]
+        },
+        {
+          "title": "Property Management",
+          "hook": "Keep your property reliable year-round.",
+          "points": [
+            "Routine maintenance and preventive checks",
+            "Fast support for repair and service requests",
+            "Operational oversight for residential and commercial units",
+            "Cleaner, safer, and better-performing spaces"
+          ]
+        },
+        {
+          "title": "Structural & Architectural Design",
+          "hook": "Where aesthetics meet engineering confidence.",
+          "points": [
+            "Concepts aligned with plot and usage goals",
+            "Structural planning focused on safety and performance",
+            "Architectural detailing for visual impact",
+            "Build-ready drawings for smoother execution"
+          ]
+        }
+      ]
+    },
+    "process": {
+      "label": "OUR PROCESS",
+      "title": "How We Deliver Your Vision, Step by Step",
+      "steps": [
+        {
+          "title": "Connect with Us",
+          "description": "Share your basic details through a quick call. Our team consults with you through a free consultation."
+        },
+        {
+          "title": "Define Your Requirement",
+          "description": "Discuss your plot details, budget, and timeline with our experts. We craft a clear project plan tailored to your goals."
+        },
+        {
+          "title": "Approve Design",
+          "description": "Review floor plans, drawings, material selection, and scheduling. Work closely with our architects until every detail is finalized."
+        },
+        {
+          "title": "Build & Monitor",
+          "description": "Our team ensures high quality standards through structured inspections at every project milestone. Stay updated on construction progress with daily photos, quality reports, and payment updates shared via WhatsApp."
+        },
+        {
+          "title": "Handover & Support",
+          "description": "Take possession of your fully completed home with confidence, backed by a 10-year warranty. We ensure a smooth transition through final walkthroughs, complete documentation, and dedicated post-completion support."
+        }
+      ]
+    },
+    "whyUs": {
+      "label": "WHY CHOOSE US",
+      "title": "Why Choose MD Construction?",
+      "description": "We bring reliability, transparency, and craftsmanship to every project we undertake.",
+      "cards": [
+        {
+          "title": "Transparent Project Planning",
+          "description": "Clear scope discussions, practical timelines, and stage-wise visibility from foundation to handover."
+        },
+        {
+          "title": "Quality Checks At Every Stage",
+          "description": "Structured inspections and progress updates help maintain build quality and reduce rework."
+        },
+        {
+          "title": "On-Time Handover Focus",
+          "description": "Milestone-based execution and close coordination keep projects moving toward timely delivery."
+        }
+      ]
+    }
+  },
   "About": {
     "meta": "About",
     "hero": {

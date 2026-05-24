@@ -1,6 +1,5 @@
 // import Link from "next/link";
 import Image from "next/image";
-import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
 
 // types — add to your types file or keep inline
@@ -315,7 +314,6 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <ContactCTA />
     </main>
   );
 }

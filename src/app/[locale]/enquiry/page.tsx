@@ -1,4 +1,3 @@
-import ContactCTA from "@/components/ContactCTA";
 import ScrollTagger from "@/components/ScrollTagger";
 
 export default function EnquiryPage() {
@@ -27,7 +26,6 @@ export default function EnquiryPage() {
         </div>
       </section>
 
-      <ContactCTA />
     </main>
   );
 }

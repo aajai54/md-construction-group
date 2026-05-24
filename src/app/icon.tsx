@@ -1,40 +1,38 @@
 import { ImageResponse } from "next/og";
-import { siteName } from "@/config";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-// Image metadata
-export const size = {
-  width: 32,
-  height: 32,
-};
-
+export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 export const dynamic = "force-static";
 
-// Image generation
 export default function Icon() {
+  const logoData = readFileSync(
+    join(process.cwd(), "public/images/construction/logo.jpg") // ← corrected path
+  );
+  const logoBase64 = `data:image/jpeg;base64,${logoData.toString("base64")}`; // ← jpeg
+
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
           background: "black",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
         }}
       >
-        {siteName.slice(0, 2) || "S"}
+        <img
+          src={logoBase64}
+          alt="MD"
+          width={24}
+          height={24}
+          style={{ borderRadius: 4, objectFit: "cover" }}
+        />
       </div>
     ),
-    // ImageResponse options
-    {
-      // For convenience, we can re-use the exported icons size metadata
-      // config to also set the ImageResponse's width and height.
-      ...size,
-    }
+    { ...size }
   );
 }
