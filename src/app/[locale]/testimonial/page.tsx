@@ -20,8 +20,8 @@ const testimonialBasePath = "/images/testimonial";
 
 const testimonials: Testimonial[] = [
   {
-    name: "Marcus DeLeon",
-    location: "kolathur, Chennai",
+    name: "Kalkirajan ",
+    location: "Kattankulathur, Chennai",
     tag: "Duplex villa",
     stars: 5,
     quote:
@@ -29,15 +29,15 @@ const testimonials: Testimonial[] = [
     media: {
       type: "images",
       srcs: [
-        `${testimonialBasePath}/1/1.jpg`,
-        `${testimonialBasePath}/1/2.jpg`,
-        `${testimonialBasePath}/1/3.jpg`,
+        `${testimonialBasePath}/1/1.png`,
+        `${testimonialBasePath}/1/2.png`,
+        `${testimonialBasePath}/1/3.png`,
       ],
     },
   },
   {
-    name: "Priya & Tom Hargreaves",
-    location: "ECR, Chennai",
+    name: "Jindas",
+    location: "Egmore, Chennai",
     tag: "Residential",
     stars: 5,
     quote:
@@ -45,39 +45,51 @@ const testimonials: Testimonial[] = [
     media: {
       type: "images",
       srcs: [
-        `${testimonialBasePath}/2/1.jpg`,
-        `${testimonialBasePath}/2/2.jpg`,
-        `${testimonialBasePath}/2/3.jpg`,
+        `${testimonialBasePath}/2/1.png`,
+        `${testimonialBasePath}/2/2.png`,
+        `${testimonialBasePath}/2/3.png`,
       ],
     },
   },
   {
-    name: "Sandra Kowalski",
-    location: "Velachery, Chennai",
+    name: "BheemRao",
+    location: "ECR, Chennai",
     tag: "Interior Turnkey",
     stars: 5,
     quote:
       "Their team delivered precision engineering six weeks ahead of schedule with zero incidents. Remarkable professionalism throughout.",
+    // media: {
+    //   type: "video",
+    //   src: `${testimonialBasePath}/3/1.mp4`,
+    // },
     media: {
-      type: "video",
-      src: `${testimonialBasePath}/3/1.mp4`,
+      type: "images",
+      srcs: [
+        `${testimonialBasePath}/3/1.png`,
+        `${testimonialBasePath}/3/2.png`,
+        `${testimonialBasePath}/3/3.png`,
+      ],
     },
   },
   {
-    name: "Daniel Okafor",
-    location: "Saidapet, Chennai",
+    name: "Ashwin",
+    location: "Porur, Chennai",
     tag: "Renovation",
     stars: 4,
     quote:
       "80,000 sq ft in under five months. The project manager kept communication tight and the steelwork is exactly to spec. Would use again.",
     media: {
-      type: "video",
-      src: `${testimonialBasePath}/4/1.mp4`,
+      type: "images",
+      srcs: [
+        `${testimonialBasePath}/4/1.png`,
+        `${testimonialBasePath}/4/2.png`,
+        `${testimonialBasePath}/4/3.png`,
+      ],
     },
   },
   {
-    name: "Helena Rousseau",
-    location: "Velachery, Chennai",
+    name: "Rajendran",
+    location: "Poonamalle, Chennai",
     tag: "Restoration",
     stars: 5,
     quote:
@@ -86,15 +98,15 @@ const testimonials: Testimonial[] = [
       type: "images",
       srcs: [
         `${testimonialBasePath}/5/1.jpg`,
-        `${testimonialBasePath}/5/2.jpg`,
-        `${testimonialBasePath}/5/3.jpg`,
+        `${testimonialBasePath}/5/2.png`,
+        `${testimonialBasePath}/5/3.png`,
       ],
     },
   },
   {
-    name: "James Whitfield",
-    location: "Velachery, Chennai",
-    tag: "Education",
+    name: "Razvi",
+    location: "Kolathur, Chennai",
+    tag: "House",
     stars: 5,
     quote:
       "They built around a live school calendar — working weekends to minimise disruption. Students walked in on day one to a fully operational facility.",

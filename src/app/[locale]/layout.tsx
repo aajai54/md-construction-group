@@ -10,44 +10,84 @@ import HtmlLangSync from "@/components/HtmlLangSync";
 import { baseURL, description, siteName, title } from "@/config";
 
 const locales = ["en", "ta"];
+const seoKeywords = [
+  "construction company",
+  "home builders",
+  "commercial construction",
+  "renovation services",
+  "civil contractors",
+  "building contractors in Tamil Nadu",
+  "Chennai construction company",
+  "turnkey construction services",
+  "MD Construction",
+  "MD Constructions",
+  "MD Construction group",
+  "MD Construction groups",
+  "construction company chennai",
+  "best construction company chennai",
+  "best construction company in Tamil Nadu",
+  "residential builders chennai",
+  "commercial project contractors chennai",
+  "Chennai construction services",
+  "Tamil Nadu construction services",
+];
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title,
-  description,
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-  icons: {
-    icon: "/icon?<generated>",
-    shortcut: "/icon?<generated>",
-    apple: "/icon?<generated>",
-  },
-  alternates: {
-    canonical: baseURL,
-  },
-  metadataBase: new URL(baseURL),
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const resolvedLocale = locales.includes(locale) ? locale : "en";
+  const canonicalUrl = `${baseURL}/${resolvedLocale}`;
+
+  return {
     title,
     description,
-    siteName,
-    url: baseURL,
-    images: [
-      {
-        url: "/api/og",
-        alt: `${siteName} Open Graph Image`,
+    keywords: seoKeywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
       },
-    ],
-  },
-};
+    },
+    verification: {
+      google: "3lWjNmepny8_UoQEhV_kfHXy4IqUHeOG-py2Q-r2zUg",
+    },
+    icons: {
+      icon: "/icon?<generated>",
+      shortcut: "/icon?<generated>",
+      apple: "/icon?<generated>",
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${baseURL}/en`,
+        ta: `${baseURL}/ta`,
+      },
+    },
+    metadataBase: new URL(baseURL),
+    openGraph: {
+      title,
+      description,
+      siteName,
+      url: canonicalUrl,
+      locale: resolvedLocale === "ta" ? "ta_IN" : "en_US",
+      images: [
+        {
+          url: "/api/og",
+          alt: `${siteName} Open Graph Image`,
+        },
+      ],
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,

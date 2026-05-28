@@ -34,6 +34,11 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+
+  .process-bg {
+    /* Keep decorative texture extremely subtle so section text remains legible. */
+    background-image: none;
+  }
 }
 
 body {
@@ -88,7 +93,6 @@ body {
 .process-bg {
   /* Keep decorative texture extremely subtle so section text remains legible. */
   background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('/images/background/1.png');
-  /* background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('/images/background/1.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

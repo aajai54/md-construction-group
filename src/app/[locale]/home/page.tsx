@@ -161,7 +161,7 @@ export default function HomePage() {
       </section>
 
       {/* Process Section */}
-      <section className="process-bg py-12 md:py-16 bg-white dark:bg-gray-900" data-tagger>
+      <section className="light:process-bg py-12 md:py-16 bg-white dark:bg-gray-900" data-tagger>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
           <div data-tagger-item>
             <span className="text-xs font-bold tracking-wider text-orange-600 uppercase block mb-2">

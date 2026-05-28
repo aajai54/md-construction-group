@@ -10,7 +10,7 @@ export const description =
   "End-to-end construction services by MD Construction with transparent planning, quality-first execution, and on-time delivery.";
 
 export const companyHighlights = [
-  { value: "250+", label: "Projects Delivered" },
+  { value: "100K+", label: "Footprint Created(Sq.Ft.)" },
   { value: "25+", label: "Years Of Experience" },
   { value: "98%", label: "On-Time Handover" },
   { value: "24x7", label: "Progress Visibility" },
