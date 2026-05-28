@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { siteName } from "@/config";
+import { consultationWhatsapp, siteName } from "@/config";
 
 const supportedLocales = ["en", "ta"];
 
@@ -37,6 +37,7 @@ const Header = () => {
   const t = useTranslations("Header");
 
   const bannerImageSrc = "/images/construction/logo.jpg";
+  const whatsappLink = `https://wa.me/${consultationWhatsapp}`;
 
   const navigation = [
     { key: "home",        href: homePath },
@@ -155,7 +156,9 @@ const Header = () => {
             </div>
 
             <Link
-              href={`${homePath}/enquiry`}
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm"
             >
               {t("cta")}
@@ -220,7 +223,9 @@ const Header = () => {
             ))}
             <div className="px-3 pt-2">
               <Link
-                href={`${homePath}/enquiry`}
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-center bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-base font-semibold transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
