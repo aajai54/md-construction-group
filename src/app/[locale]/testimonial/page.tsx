@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 // import Link from "next/link";
 import Image from "next/image";
 import ScrollTagger from "@/components/ScrollTagger";
@@ -141,8 +144,24 @@ function StarRating({ count }: { count: number }) {
   );
 }
 
-function ImageMosaic({ srcs }: { srcs: string[] }) {
-  if (srcs.length === 1) {
+function ImageCarousel({ srcs }: { srcs: string[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (srcs.length <= 1) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((prev) => (prev === srcs.length - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [srcs.length]);
+
+  if (srcs.length <= 1) {
     return (
       <div className="h-64 overflow-hidden">
         <Image src={srcs[0]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
@@ -150,23 +169,64 @@ function ImageMosaic({ srcs }: { srcs: string[] }) {
     );
   }
 
-  if (srcs.length === 2) {
-    return (
-      <div className="grid grid-cols-2 gap-px h-64 overflow-hidden">
-        {srcs.map((src, i) => (
-          <Image key={i} src={src} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
+  const goToPrevious = () => {
+    setActiveIndex((prev) => (prev === 0 ? srcs.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((prev) => (prev === srcs.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative h-64 overflow-hidden">
+      <div
+        className="flex h-full transition-transform duration-500 ease-out"
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      >
+        {srcs.map((src, index) => (
+          <div key={`${src}-${index}`} className="w-full h-full shrink-0">
+            <Image src={src} alt={`Project ${index + 1}`} width={800} height={600} className="w-full h-full object-cover" />
+          </div>
         ))}
       </div>
-    );
-  }
 
-  // 3 images: 1 large left + 2 stacked right
-  return (
-    <div className="grid grid-cols-2 gap-px h-64 overflow-hidden">
-      <Image src={srcs[0]} alt="Project" width={800} height={1200} className="w-full h-full object-cover row-span-2" />
-      <div className="grid grid-rows-2 gap-px">
-        <Image src={srcs[1]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
-        <Image src={srcs[2]} alt="Project" width={800} height={600} className="w-full h-full object-cover" />
+      <button
+        type="button"
+        onClick={goToPrevious}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800"
+        aria-label="Previous image"
+      >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        onClick={goToNext}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800"
+        aria-label="Next image"
+      >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+        {srcs.map((_, index) => (
+          <button
+            key={`img-dot-${index}`}
+            type="button"
+            onClick={() => setActiveIndex(index)}
+            className={`h-1.5 rounded-full transition-all ${
+              activeIndex === index
+                ? "w-5 bg-amber-500"
+                : "w-1.5 bg-white/70 dark:bg-gray-300/60"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+            aria-current={activeIndex === index}
+          />
+        ))}
       </div>
     </div>
   );
@@ -240,7 +300,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
             clientName={item.name}
           />
         ) : (
-          <ImageMosaic srcs={item.media.srcs} />
+          <ImageCarousel srcs={item.media.srcs} />
         )}
       </div>
 
@@ -319,11 +379,11 @@ export default function TestimonialsPage() {
 
       {/* grid */}
       <section className="py-8 md:py-12">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6 grid gap-6 md:grid-cols-3">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((item) => (
             <TestimonialCard key={item.name} item={item} />
           ))}
-        </div>
+          </div>
       </section>
 
     </main>
