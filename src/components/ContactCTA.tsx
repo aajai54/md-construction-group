@@ -57,7 +57,7 @@ const contactLinks = [
 ];
 
 const qrCodes = [
-  { label: "WhatsApp", src: "/images/whatsapp-qr.png",   alt: "WhatsApp QR code" },
+  { label: "WhatsApp", src: "/images/whatsapp-qr.jpg",   alt: "WhatsApp QR code" },
   { label: "Instagram", src: "/images/instagram-qr.png", alt: "Instagram QR code" },
 ];
 

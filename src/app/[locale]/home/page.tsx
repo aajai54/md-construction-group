@@ -109,7 +109,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="scroll-mt-24 py-16 md:py-24 bg-white dark:bg-gray-900" data-tagger>
+      <section id="services" className="scroll-mt-24 py-12 md:py-16 bg-white dark:bg-gray-900" data-tagger>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="mb-10 md:mb-12" data-tagger-item>
             <span className="text-xs font-bold tracking-[0.2em] text-orange-600 uppercase block mb-3">
@@ -126,37 +126,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-16 md:py-24 bg-white dark:bg-gray-900" data-tagger>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
-          <div data-tagger-item>
-            <span className="text-xs font-bold tracking-wider text-orange-600 uppercase block mb-2">
-              {t("process.label")}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mb-8 tracking-tight">
-              {t("process.title")}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-7">
-              {processSteps.map((step, i) => (
-                <div
-                  key={i}
-                  className={`rounded-xl border border-gray-200/80 dark:border-gray-700/80 p-4 bg-white/70 dark:bg-gray-800/40${i === 4 ? " sm:col-span-2 lg:col-span-1" : ""}`}
-                  data-tagger-item
-                >
-                  <div className="w-9 h-9 rounded-lg bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-orange-500 mb-3 border border-amber-100/70 dark:border-amber-900/30">
-                    {processIcons[i]}
-                  </div>
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">{step.title}</h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{step.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Us Section */}
-      <section className="why-bg py-12 md:py-16 bg-gray-50/50 dark:bg-gray-900/50 border-t border-b border-gray-100 dark:border-gray-800/60" data-tagger>
+      <section className="py-12 md:py-16 bg-gray-50/50 dark:bg-gray-900/50 border-t border-b border-gray-100 dark:border-gray-800/60" data-tagger>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
           <div className="mb-12" data-tagger-item>
             <span className="text-xs font-bold tracking-wider text-orange-600 uppercase block mb-2">
@@ -176,13 +147,46 @@ export default function HomePage() {
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-sm hover:shadow-md transition-shadow"
                 data-tagger-item
               >
-                <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-orange-500 mb-5 border border-amber-100/70 dark:border-amber-900/30">
-                  {whyUsIcons[i]}
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-orange-500 border border-amber-100/70 dark:border-amber-900/30 shrink-0">
+                    {whyUsIcons[i]}
+                  </div>
+                  <h3 className="text-base font-bold text-gray-900 dark:text-white">{card.title}</h3>
                 </div>
-                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">{card.title}</h3>
                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{card.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="process-bg py-12 md:py-16 bg-white dark:bg-gray-900" data-tagger>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-5 lg:px-6">
+          <div data-tagger-item>
+            <span className="text-xs font-bold tracking-wider text-orange-600 uppercase block mb-2">
+              {t("process.label")}
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mb-8 tracking-tight">
+              {t("process.title")}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-7">
+              {processSteps.map((step, i) => (
+                <div
+                  key={i}
+                  className={`rounded-xl border border-gray-200/80 dark:border-gray-700/80 p-4 bg-white/70 dark:bg-gray-800/40${i === 4 ? " sm:col-span-2 lg:col-span-1" : ""}`}
+                  data-tagger-item
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-9 h-9 rounded-lg bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-orange-500 border border-amber-100/70 dark:border-amber-900/30 shrink-0">
+                      {processIcons[i]}
+                    </div>
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{step.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
