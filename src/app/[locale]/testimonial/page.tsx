@@ -14,7 +14,7 @@ interface Testimonial {
   name: string;
   location: string;
   quote: string;
-  tag?: string;
+  tag?: string[];
   stars?: number; // 1–5
   media: TestimonialMedia;
 }
@@ -25,10 +25,10 @@ const testimonials: Testimonial[] = [
   {
     name: "Kalkirajan ",
     location: "Kattankulathur, Chennai",
-    tag: "Duplex villa",
+    tag: ["Duplex villa", "Residential"],
     stars: 5,
     quote:
-      "From groundbreaking to ribbon-cutting their team was flawless. Every milestone was met on time and the finish quality exceeded everything in the brief.",
+      "Our duplex villa is now a beautiful, modern residential space. The team delivered a perfect blend of comfort and style, making our home truly special.",
     media: {
       type: "images",
       srcs: [
@@ -39,12 +39,44 @@ const testimonials: Testimonial[] = [
     },
   },
   {
-    name: "Jindas",
-    location: "Egmore, Chennai",
-    tag: "Residential",
+    name: "Rajendran",
+    location: "Poonamalle, Chennai",
+    tag: ["Duplex villa", "Residential"],
     stars: 5,
     quote:
-      "We were nervous about such a big renovation, but the crew made us feel informed at every step. Neighbours keep asking who built it.",
+      "The duplex villa project exceeded our expectations. The residential design is both elegant and functional, and the attention to detail was outstanding.",
+    media: {
+      type: "images",
+      srcs: [
+        `${testimonialBasePath}/5/1.jpg`,
+        `${testimonialBasePath}/5/2.png`,
+        `${testimonialBasePath}/5/3.png`,
+      ],
+    },
+  },
+  {
+    name: "Razvi",
+    location: "Kolathur, Chennai",
+    tag: ["Appartment","Residential"],
+    stars: 5,
+    quote:
+      "Our new apartment is a wonderful residential space. The team managed the project efficiently and created a comfortable home for our family.",
+    media: {
+      type: "images",
+      srcs: [
+        `${testimonialBasePath}/6/1.jpg`,
+        `${testimonialBasePath}/6/2.jpg`,
+        `${testimonialBasePath}/6/3.jpg`,
+      ],
+    },
+  },
+  {
+    name: "Jindas",
+    location: "Egmore, Chennai",
+    tag: ["Residential", "Interior Turnkey"],
+    stars: 5,
+    quote:
+      "The interior turnkey solution transformed our residential space. Every room feels custom-designed, and the process was smooth from start to finish.",
     media: {
       type: "images",
       srcs: [
@@ -57,10 +89,10 @@ const testimonials: Testimonial[] = [
   {
     name: "BheemRao",
     location: "ECR, Chennai",
-    tag: "Interior Turnkey",
+    tag: ["Commercial", "Interior Turnkey"],
     stars: 5,
     quote:
-      "Their team delivered precision engineering six weeks ahead of schedule with zero incidents. Remarkable professionalism throughout.",
+      "Our commercial Clinic space was delivered ahead of schedule with a stunning interior turnkey finish. The professionalism and quality were top-notch.",
     // media: {
     //   type: "video",
     //   src: `${testimonialBasePath}/3/1.mp4`,
@@ -77,48 +109,16 @@ const testimonials: Testimonial[] = [
   {
     name: "Ashwin",
     location: "Porur, Chennai",
-    tag: "Renovation",
+    tag: ["Interior Turnkey", "Residential"],
     stars: 4,
     quote:
-      "80,000 sq ft in under five months. The project manager kept communication tight and the steelwork is exactly to spec. Would use again.",
+      "The interior turnkey project for our residence was completed on time and with great care. The living spaces are now both beautiful and practical.",
     media: {
       type: "images",
       srcs: [
         `${testimonialBasePath}/4/1.png`,
         `${testimonialBasePath}/4/2.png`,
         `${testimonialBasePath}/4/3.png`,
-      ],
-    },
-  },
-  {
-    name: "Rajendran",
-    location: "Poonamalle, Chennai",
-    tag: "Restoration",
-    stars: 5,
-    quote:
-      "Their restoration expertise preserved every original feature we cared about while meeting all modern building codes. Guests are blown away.",
-    media: {
-      type: "images",
-      srcs: [
-        `${testimonialBasePath}/5/1.jpg`,
-        `${testimonialBasePath}/5/2.png`,
-        `${testimonialBasePath}/5/3.png`,
-      ],
-    },
-  },
-  {
-    name: "Razvi",
-    location: "Kolathur, Chennai",
-    tag: "House",
-    stars: 5,
-    quote:
-      "They built around a live school calendar — working weekends to minimise disruption. Students walked in on day one to a fully operational facility.",
-    media: {
-      type: "images",
-      srcs: [
-        `${testimonialBasePath}/6/1.jpg`,
-        `${testimonialBasePath}/6/2.jpg`,
-        `${testimonialBasePath}/6/3.jpg`,
       ],
     },
   },
@@ -146,9 +146,10 @@ function StarRating({ count }: { count: number }) {
 
 function ImageCarousel({ srcs }: { srcs: string[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (srcs.length <= 1) {
+    if (srcs.length <= 1 || isHovered) {
       return;
     }
 
@@ -159,7 +160,7 @@ function ImageCarousel({ srcs }: { srcs: string[] }) {
     return () => {
       window.clearInterval(timer);
     };
-  }, [srcs.length]);
+  }, [srcs.length, isHovered]);
 
   if (srcs.length <= 1) {
     return (
@@ -178,7 +179,11 @@ function ImageCarousel({ srcs }: { srcs: string[] }) {
   };
 
   return (
-    <div className="relative h-64 overflow-hidden">
+    <div
+      className="relative h-64 overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div
         className="flex h-full transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -308,9 +313,16 @@ function TestimonialCard({ item }: { item: Testimonial }) {
       <div className="flex flex-col flex-1 p-5 gap-3">
         {/* tag + stars */}
         <div className="flex items-center justify-between">
-          {item.tag && (
-            <span className="text-[10px] font-semibold tracking-widest uppercase text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 px-2 py-0.5 rounded">
-              {item.tag}
+          {item.tag && item.tag.length > 0 && (
+            <span className="flex gap-1">
+              {item.tag.map((t, idx) => (
+                <span
+                  key={t + idx}
+                  className="text-[10px] font-semibold tracking-widest uppercase text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 px-2 py-0.5 rounded"
+                >
+                  {t}
+                </span>
+              ))}
             </span>
           )}
           {item.stars && <StarRating count={item.stars} />}
