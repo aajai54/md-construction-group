@@ -4,7 +4,7 @@
       "home": "Home",
       "services": "Services",
       "contact": "Contact Us",
-      "testimonial": "Testimonial",
+      "testimonial": "Portfolio",
       "about": "About"
     },
     "cta": "Book Free Consultation",
@@ -168,7 +168,7 @@
       "title": "Quick Links",
       "home": "Home",
       "about": "About",
-      "testimonial": "Testimonial"
+      "testimonial": "Portfolio"
     },
     "rights": "All rights reserved."
   }
